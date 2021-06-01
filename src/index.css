@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.full {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(84, 139, 175, 0.1);
+}
+
+.back-full {
+  background-color: white;
+}
+
+.highlight {
+  height: 100%;
+  /*background-color: #1C9CF6 !important;*/
+  color: rgb(255, 250, 224);
+  background-color: rgba(25, 195, 251, 0.6);
+  transition-duration: 2000ms;
+}
+
+.highlight a {
+  font-size: 24px;
+}
+
+.highlight:hover {
+  color: rgba(255, 255, 130, 1);
+  background-color: rgba(25, 195, 251, 1)
+}
+
+.highlight a:hover {
+  color: rgb(255, 250, 224);
+  text-decoration: none;
+}

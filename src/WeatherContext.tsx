@@ -1,8 +1,8 @@
-import React, { useReducer, useContext } from 'react'
+import React, { useReducer, useContext, FC } from 'react'
 
-const WeatherStateContext = React.createContext()
+const WeatherStateContext: any = React.createContext(null)
 
-const WeatherDispatchContext = React.createContext()
+const WeatherDispatchContext: any = React.createContext(null)
 
 const initialValue = {
     allWeather: {},
@@ -10,7 +10,7 @@ const initialValue = {
     allForecastItemList: {}
 }
 
-const reducer = (state, action) => {
+const reducer = (state: any, action: any) => {
     switch(action.type) {
         case "SET_ALL_WEATHER":
             const weatherCity = action.payload
@@ -29,7 +29,7 @@ const reducer = (state, action) => {
     }
 }
 
-const WeatherContext = ({ children }) => {
+const WeatherContext: FC = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialValue)
 
     return (

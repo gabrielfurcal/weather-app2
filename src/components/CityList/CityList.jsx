@@ -8,13 +8,11 @@ import CityInfo from '../CityInfo'
 import Weather from '../Weather'
 import useCityList from '../../hooks/useCityList'
 import { getCityCode } from '../../utils/utils'
+import { useWeatherDispatchContext, useWeatherStateContext } from '../../WeatherContext'
 
-// renderCityAndCountry se va a convertir en una función que retorna otra función
-const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
-    const { city, country, countryCode } = cityAndCountry
-
+const CityListItem = React.memo(({ city, country, countryCode, weather, eventOnClickCity }) => {
     return (
-        <ListItem button alignItems="center" key={getCityCode(city, countryCode)} onClick={() => eventOnClickCity(city, countryCode)}>
+        <ListItem button alignItems="center" onClick={() => eventOnClickCity(city, countryCode)}>
             <Grid container justify="center" alignItems="center">
                 <Grid item md={9} xs={12}>
                     <CityInfo city={city} country={country}/>
@@ -25,13 +23,25 @@ const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
             </Grid>
         </ListItem>
     )
+})
+
+CityListItem.displayName = "CityListItem"
+
+// renderCityAndCountry se va a convertir en una función que retorna otra función
+const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
+    const { city, countryCode } = cityAndCountry
+
+    return <CityListItem key={getCityCode(city, countryCode)} eventOnClickCity={eventOnClickCity} weather={weather} { ...cityAndCountry }/>
 }
 
 //cities: es un array, y en cada item tiene que tener la ciudad, pero además el country
-const CityList = ({ cities, onClickCity, data, actions }) => {
+const CityList = ({ cities, onClickCity }) => {
+    const data = useWeatherStateContext()
+    const actions = useWeatherDispatchContext()
+
     const { allWeather } = data
-    const { onSetAllWeather } = actions
-    const { error, setError } = useCityList(cities, allWeather, onSetAllWeather)
+    //const { onSetAllWeather } = actions
+    const { error, setError } = useCityList(cities, allWeather, actions)
 
     return (
         <div>
@@ -54,4 +64,4 @@ CityList.propTypes = {
     onClickCity: PropTypes.func.isRequired
 }
 
-export default CityList
+export default React.memo(CityList)

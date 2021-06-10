@@ -5,9 +5,13 @@
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/lab": "^4.0.0-alpha.58",
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.6",
+    "@testing-library/jest-dom": "^5.13.0",
+    "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.2",
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.7",
     "axios": "^0.21.1",
     "convert-units": "^2.3.4",
     "moment": "^2.29.1",
@@ -19,6 +23,7 @@
     "recharts": "^2.0.9",
     "three": "^0.128.0",
     "typeface-roboto": "^1.1.13",
+    "typescript": "^4.3.2",
     "vanta": "^0.5.21",
     "web-vitals": "^1.1.2"
   },
@@ -60,6 +65,7 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-controls": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
     "@storybook/addon-viewport": "^6.2.9",

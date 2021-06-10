@@ -4,7 +4,13 @@ import CityInfo from './CityInfo'
 
 export default {
     title: "CityInfo",
-    component: CityInfo
+    component: CityInfo,
+    argTypes: {
+        city: { control: { type: "text" } },
+        country: { control: { type: "text" } },
+    }
 }
 
-export const CityExample = () => <CityInfo city={"Santo Domingo"} country={"República Dominicana"}></CityInfo>
+export const CityExample = (args) => <CityInfo { ...args }></CityInfo>
+
+CityExample.args = { city: "Santo Domingo", country: "República Dominicana" }

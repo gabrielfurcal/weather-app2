@@ -1,6 +1,7 @@
 import React from 'react'
 import CityList from './CityList'
 import { render, fireEvent } from '@testing-library/react'
+import WeatherContext from '../../WeatherContext'
 
 const cities = [
     {city: "Santo Domingo", country: "Dominican Republic", countryCode: "DO"},
@@ -10,11 +11,15 @@ const cities = [
 ]
 
 test("CityList render", async () => {
-    const { findAllByRole } = render(<CityList cities={cities} onClickCity={() => {}} data={{ allWeather: {} }} actions={{}}/>)
+    const { findAllByRole } = render(
+        <WeatherContext>
+            <CityList cities={cities} onClickCity={() => {}}/>
+        </WeatherContext>
+    )
 
     const elements = await findAllByRole("button")
     
-    expect(elements).toHaveLength(5)
+    expect(elements).toHaveLength(4)
 })
 
 test("CityList click on item", async () => {
@@ -22,7 +27,11 @@ test("CityList click on item", async () => {
     // Para eso vamos a utilizar una función "mock"
 
     const fnClickOnItem = jest.fn()
-    const { findAllByRole } = render(<CityList cities={cities} onClickCity={fnClickOnItem} data={{ allWeather: {} }} actions={{}}/>)
+    const { findAllByRole } = render(
+        <WeatherContext>
+            <CityList cities={cities} onClickCity={fnClickOnItem}/>
+        </WeatherContext>
+    )
     const items = await findAllByRole("button")
 
     // Ahora, apra simular la acción, vamos a utilizar fireEvent
@@ -31,5 +40,5 @@ test("CityList click on item", async () => {
 
     // ¿Ahora qué tuvo que suceder?
     // Se debió llamar a la función fnClickOnItem UNA única vez
-    expect(fnClickOnItem).toHaveBeenCalledTimes(0)
+    expect(fnClickOnItem).toHaveBeenCalledTimes(1)
 })

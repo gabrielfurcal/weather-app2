@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
-class ErrorBoundary extends Component {
+class ErrorBoundary extends PureComponent { //PureComponenent es lo relativo a usar React.memo en los functional componenets. Anteriormente heredaba de la clase Component
     constructor(props) {
         super(props)
 

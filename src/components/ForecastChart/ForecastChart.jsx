@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import Typography from '@material-ui/core/Typography'
 
 const ForecastChart = ({ data }) => {
+    const marginSize = useMemo(() => ({top:21, bottom: 20, left: 5, right: 5}), [])
+
     return (
         <Typography>
             <ResponsiveContainer height={250} width={"95%"}>
-                <LineChart margin={{top:21, bottom: 20, left: 5, right: 5}} data={data}>
+                <LineChart margin={marginSize} data={data}>
                     <XAxis dataKey="dayHour"/>
                     <YAxis/>
                     <CartesianGrid/>
